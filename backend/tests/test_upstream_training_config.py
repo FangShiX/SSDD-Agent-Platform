@@ -12,7 +12,7 @@ from app.entity.schemas import TrainingTaskCreate
 async def test_start_endpoint_forwards_advanced_options(db_session, monkeypatch, tmp_path, options):
     """Catch options silently lost between API validation and the training worker."""
     user = User(username="config-owner", email="config@example.com", hashed_password="x")
-    scene = DetectionScene(name="config-scene", display_name="Config", class_names=["scratch"])
+    scene = DetectionScene(name="config-scene", display_name="Config", category="industry", class_names=["scratch"])
     db_session.add_all([user, scene])
     db_session.commit()
     (tmp_path / "data.yaml").write_text("names: [scratch]\n", encoding="utf-8")
