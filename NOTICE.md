@@ -1,6 +1,8 @@
 # Origin and third-party notices
 
-SSDD: Steel Defect Agent is based on the original `Guochaoo/xjtucs_shixun_group19` project, upstream `dev` revision `2e0dc76d3ec8309ab20b02550cf306681b61194b`, PR #68 revision `6f6aa484e8f229bdb45f5b09781496a3046a6f8c`, and the project team's subsequent local work. The integrated private baseline is `b894489d551b881ea1c4f78d7367adbb5f4390a6`. Original commit history remains in a private archive; this public repository starts from a reviewed source snapshot to avoid disclosing historical credentials and internal materials.
+SSDD-Agent-Platform (previously Steel Defect Agent) is based on the original `Guochaoo/xjtucs_shixun_group19` project, upstream `dev` revision `2e0dc76d3ec8309ab20b02550cf306681b61194b`, PR #68 revision `6f6aa484e8f229bdb45f5b09781496a3046a6f8c`, and the project team's subsequent local work. The integrated private baseline is `b894489d551b881ea1c4f78d7367adbb5f4390a6`. Original commit history remains in a private archive; this public repository starts from a reviewed source snapshot to avoid disclosing historical credentials and internal materials.
+
+The current upstream is [Guochaoo/SSDD-Agent-Platform](https://github.com/Guochaoo/SSDD-Agent-Platform). Selected changes were adapted from `main` revision `5eea80521ff93052a6eb1ebba3f53918dec2c608` on 2026-10-18; the original upstream repository was accessed read-only. See `docs/upstream-integration.md` for the selection record.
 
 The original project did not provide a project-level LICENSE. This repository does not invent a license grant for other contributors' work: making the source publicly readable does not grant an additional right to redistribute or relicense it. Obtain permission from the relevant rights holders before reuse. Existing authors retain their rights.
 

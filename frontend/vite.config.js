@@ -49,7 +49,8 @@ export default defineConfig({
       },
       output: {
         codeSplitting: {
-          maxSize: 450000,
+          // Keep vendor groups intact: forced size splitting can create a
+          // circular Element Plus initialization and a blank production page.
           groups: [
             {
               name: 'vendor-vue',

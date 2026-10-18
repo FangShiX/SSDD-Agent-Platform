@@ -3,7 +3,7 @@
     <!-- Header: brand + toggle -->
     <div class="sidebar-header">
       <img src="/favicon.svg" alt="logo" class="brand-logo" />
-      <span class="brand-text">钢铁表面缺陷检测</span>
+      <span class="brand-text" title="SSDD-Agent-Platform">SSDD Agent</span>
       <button class="toggle-btn" :title="collapsed ? text.expandSidebar : text.collapseSidebar" @click="handleToggle">
         <DockLeft class="toggle-icon" />
       </button>
@@ -167,6 +167,7 @@ import { useSettingsStore } from '@/stores/settings'
 import { ChevronsUpDown, MessageCircleDetail, Capture, Computer, History, ChartTrend, Plus, Trash, DockLeft, Shield, ClipboardCheck } from '@boxicons/vue'
 import { FolderOpened } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import { undoAction } from '@/api/undo'
 import SettingsModal from '@/components/settings/SettingsModal.vue'
 
 const props = defineProps({
@@ -369,8 +370,23 @@ async function handleSwitchSession(id) {
 
 async function handleDeleteSession(id) {
   try {
-    await agentStore.deleteSession(id)
+    const result = await agentStore.deleteSession(id)
     await agentStore.fetchSessions()
+    if (result?.undo_id) {
+      const shouldUndo = await ElMessageBox.confirm(
+        settingsStore.isEnglish ? 'The chat was deleted. Undo it now?' : '会话已删除，现在撤销吗？',
+        settingsStore.isEnglish ? 'Undo recent change?' : '撤销最近操作？',
+        { confirmButtonText: settingsStore.isEnglish ? 'Undo' : '撤销', cancelButtonText: settingsStore.isEnglish ? 'Keep' : '保留', type: 'info' },
+      ).then(() => true, () => false)
+      if (shouldUndo) {
+        try {
+          await undoAction(result.undo_id)
+          await agentStore.fetchSessions()
+        } catch {
+          ElMessage.error(settingsStore.isEnglish ? 'Undo failed or expired' : '撤销失败或已过期')
+        }
+      }
+    }
   } catch {
     agentStore.fetchSessions().catch(() => {})
   }

@@ -138,6 +138,10 @@ export function archiveTrainingDataset(datasetPath) {
   return request.post(`/training/datasets/${encodeURIComponent(datasetPath)}/archive`)
 }
 
+export function reprocessTrainingDataset(datasetPath) {
+  return request.post(`/training/datasets/${encodeURIComponent(datasetPath)}/reprocess`)
+}
+
 export function downloadTrainingReport(taskId) {
   return request.get(`/training/report/${taskId}`, { responseType: 'blob', timeout: 120000 })
 }
