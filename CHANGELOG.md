@@ -6,6 +6,7 @@
 - Adapt upstream `5eea805` advanced training parameter forwarding, dataset revalidation and chat/training deletion undo UI.
 - Keep release dependency pins, permissions, recycle bin, file ledger, migrations and deployment security.
 - Remove duplicate `/files` redirect so the retained lifecycle page is reachable.
+- Update vulnerable Vue/source-map patches and prevent vendor chunk cycles from blanking the production UI.
 - Preserve Docker Compose project/image names for existing installations.
 
 
