@@ -1,18 +1,18 @@
-# SSDD: Steel Defect Agent
+# SSDD-Agent-Platform
 
 钢铁表面缺陷检测智能体平台。SSDD = **Steel Surface Defect Detection**。
 
 Vue 3 + FastAPI，结合 YOLO 图像/视频检测、模型训练、LangGraph 多智能体、RAG 知识库、用户权限和文件生命周期管理。
 
-这是供可信项目团队评估的 **v0.1.0 初始源码发行版**。代码公开不等于已有完整开源授权；来源与依赖许可见 [NOTICE.md](NOTICE.md)。模型权重、训练数据和真实 API 密钥单独配置，不随源码发布。另一个 GUI/HCI 项目不在此仓库内。
+这是供可信项目团队评估的源码发行版，已择优整合上游 2026-10-15 的 `main`（`5eea805`），差异取舍见 [上游整合记录](docs/upstream-integration.md)。代码公开不等于已有完整开源授权；来源与依赖许可见 [NOTICE.md](NOTICE.md)。模型权重、训练数据和真实 API 密钥单独配置，不随源码发布。另一个 GUI/HCI 项目不在此仓库内。
 
 ## 快速启动
 
 需要 Python 3.10+（生成配置）、Docker Engine/Desktop 和 Docker Compose v2。
 
 ```bash
-git clone https://github.com/FangShiX/steel-defect-agent.git
-cd steel-defect-agent
+git clone https://github.com/FangShiX/SSDD-Agent-Platform.git
+cd SSDD-Agent-Platform
 python scripts/configure.py
 docker compose --env-file .env -f docker-compose.yml up -d --build --wait --wait-timeout 300
 ```

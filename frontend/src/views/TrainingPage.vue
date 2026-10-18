@@ -536,6 +536,7 @@ import { useSettingsStore } from '@/stores/settings'
 import { useTaskStore } from '@/stores/tasks'
 import { ArrowDown, Plus, Refresh, UploadFilled } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import { undoAction } from '@/api/undo'
 import * as echarts from 'echarts'
 import {
   downloadTrainingModel,
@@ -1196,7 +1197,7 @@ async function deleteTask(task) {
       { type: 'warning' },
     )
     const identifier = taskIdentifier(task)
-    await deleteTrainingTask(identifier)
+    const result = await deleteTrainingTask(identifier)
     if (taskIdentifier(selectedTask.value) === identifier) {
       stopPolling()
       selectedTask.value = null
@@ -1206,6 +1207,21 @@ async function deleteTask(task) {
     }
     await fetchTasks()
     ElMessage.success(text.value.deleteSuccess)
+    if (result?.undo_id) {
+      const shouldUndo = await ElMessageBox.confirm(
+        bilingual('训练任务已隐藏，现在撤销吗？', 'The training task was hidden. Undo it now?'),
+        bilingual('撤销最近操作？', 'Undo recent change?'),
+        { confirmButtonText: bilingual('撤销', 'Undo'), cancelButtonText: bilingual('保留删除', 'Keep deleted'), type: 'info' },
+      ).then(() => true, () => false)
+      if (shouldUndo) {
+        try {
+          await undoAction(result.undo_id)
+          await fetchTasks()
+        } catch (error) {
+          reportPageError(error, bilingual('撤销失败或已过期', 'Undo failed or expired'))
+        }
+      }
+    }
   } catch (error) {
     if (error !== 'cancel' && error !== 'close') {
       reportPageError(error, bilingual('删除训练任务失败', 'Failed to delete training task'), () => deleteTask(task))

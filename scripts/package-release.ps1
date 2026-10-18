@@ -1,4 +1,4 @@
-param([string]$Output = 'dist/steel-defect-agent-v0.1.0.zip')
+param([string]$Output = 'dist/SSDD-Agent-Platform-v0.1.0.zip')
 $ErrorActionPreference = 'Stop'
 Push-Location (Split-Path $PSScriptRoot -Parent)
 try {

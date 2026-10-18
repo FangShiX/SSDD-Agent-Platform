@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-18 — selective upstream integration
+
+- Rename project/repository to SSDD-Agent-Platform.
+- Adapt upstream `5eea805` advanced training parameter forwarding, dataset revalidation and chat/training deletion undo UI.
+- Keep release dependency pins, permissions, recycle bin, file ledger, migrations and deployment security.
+- Remove duplicate `/files` redirect so the retained lifecycle page is reachable.
+- Preserve Docker Compose project/image names for existing installations.
+
+
 ## 0.1.0 — 2026-10-04
 
 - First reviewed public source release of SSDD: Steel Defect Agent.

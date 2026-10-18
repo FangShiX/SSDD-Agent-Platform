@@ -21,7 +21,7 @@ def package(output):
     with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as archive:
         for name in files:
             if name and not excluded(name) and (ROOT / name).is_file():
-                archive.write(ROOT / name, 'steel-defect-agent/' + name)
+                archive.write(ROOT / name, 'SSDD-Agent-Platform/' + name)
     checksum = hashlib.sha256(output.read_bytes()).hexdigest()
     output.with_suffix(output.suffix + '.sha256').write_text(f'{checksum}  {output.name}\n', encoding='utf-8')
     print(f'Packaged {output.name} with SHA-256 checksum')
@@ -29,5 +29,5 @@ def package(output):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', type=Path, default=ROOT / 'dist/steel-defect-agent-v0.1.0.zip')
+    parser.add_argument('--output', type=Path, default=ROOT / 'dist/SSDD-Agent-Platform-v0.1.0.zip')
     package(parser.parse_args().output.resolve())

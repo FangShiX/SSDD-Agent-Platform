@@ -62,7 +62,7 @@ export function getAgentArtifact(filename) {
 }
 
 export function deleteAgentSession(sessionId) {
-  return request.delete(`/agent/sessions/${encodeURIComponent(sessionId)}`)
+  return request.delete(`/chat/sessions/${encodeURIComponent(sessionId)}`)
 }
 
 export function updateAgentSession(sessionId, payload) {

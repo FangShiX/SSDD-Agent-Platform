@@ -104,10 +104,10 @@ jobs:
           import importlib.util, zipfile
           spec = importlib.util.spec_from_file_location('packaging', 'scripts/package-release.py')
           module = importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
-          with zipfile.ZipFile('dist/steel-defect-agent-v0.1.0.zip') as archive:
+          with zipfile.ZipFile('dist/SSDD-Agent-Platform-v0.1.0.zip') as archive:
               assert archive.testzip() is None
-              assert all(not module.excluded(name.removeprefix('steel-defect-agent/')) for name in archive.namelist())
-              assert 'steel-defect-agent/scripts/start.ps1' in archive.namelist()
+              assert all(not module.excluded(name.removeprefix('SSDD-Agent-Platform/')) for name in archive.namelist())
+              assert 'SSDD-Agent-Platform/scripts/start.ps1' in archive.namelist()
           print('Source package contents and ZIP integrity passed')
           PY
 

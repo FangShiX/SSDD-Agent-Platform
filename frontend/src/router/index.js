@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-const APP_TITLE = '钢铁表面缺陷检测智能体平台'
+const APP_TITLE = 'SSDD-Agent-Platform'
 
 const routes = [
   {
@@ -44,12 +44,6 @@ const routes = [
         name: 'TaskCenter',
         component: () => import('@/views/TaskCenterPage.vue'),
         meta: { title: '任务中心', icon: 'List' },
-      },
-      {
-        path: 'files',
-        name: 'Files',
-        redirect: '/training',
-        meta: { title: '文件查看', icon: 'FolderOpened' },
       },
       {
         path: 'history',

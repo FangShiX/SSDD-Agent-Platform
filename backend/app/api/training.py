@@ -610,6 +610,7 @@ async def start_training(
         "optimizer": request.optimizer,
         "lr0": request.lr0,
         "augment_config": request.augment_config,
+        "train_config": request.train_config.model_dump(exclude_none=True) if request.train_config else {},
         "idempotency_key": idempotency_key,
     }
 
